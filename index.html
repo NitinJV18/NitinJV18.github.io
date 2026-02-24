@@ -4,100 +4,257 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nitin Jeremiah Vedanand | Portfolio</title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root {
-            --primary: #2563eb;
-            --dark: #1e293b;
-            --light: #f8fafc;
-            --text: #334155;
-        }
-        body { font-family: 'Segoe UI', sans-serif; line-height: 1.6; margin: 0; color: var(--text); background: var(--light); }
-        header { background: var(--dark); color: white; padding: 4rem 2rem; text-align: center; }
-        .container { max-width: 900px; margin: auto; padding: 2rem; }
-        section { margin-bottom: 3rem; background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        h1, h2 { color: var(--dark); margin-top: 0; }
-        h1 { font-size: 2.5rem; margin-bottom: 0.5rem; color: white; }
-        .contact-links a { color: #cbd5e1; margin: 0 10px; text-decoration: none; font-size: 1.1rem; }
-        .contact-links a:hover { color: white; }
-        .tag { background: #e2e8f0; padding: 4px 12px; border-radius: 15px; font-size: 0.85rem; display: inline-block; margin: 4px; }
-        .job, .edu { margin-bottom: 1.5rem; border-left: 4px solid var(--primary); padding-left: 1rem; }
-        .job-title { font-weight: bold; font-size: 1.2rem; display: block; }
-        .date { color: #64748b; font-size: 0.9rem; margin-bottom: 0.5rem; display: block; }
-        .project-card { border: 1px solid #e2e8f0; padding: 1.5rem; border-radius: 8px; margin-bottom: 1rem; }
-        footer { text-align: center; padding: 2rem; color: #64748b; font-size: 0.9rem; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif; }
+        .gradient-hero { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .skill-tag { transition: all 0.2s ease; }
+        .skill-tag:hover { transform: scale(1.05); }
+        .section-title { position: relative; display: inline-block; }
+        .section-title::after { content: ''; position: absolute; bottom: -8px; left: 0; width: 60px; height: 3px; background: linear-gradient(90deg, #667eea, #764ba2); border-radius: 2px; }
     </style>
 </head>
 <body>
+<div id="root"></div>
 
-<header>
-    <h1>Nitin Jeremiah Vedanand</h1>
-    <div class="contact-links">
-        <a href="mailto:nitinjvedanand@gmail.com"><i class="fas fa-envelope"></i> Email</a>
-        <a href="https://linkedin.com/nitinjv" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
-        <a href="tel:984-382-9995"><i class="fas fa-phone"></i> 984-382-9995</a>
-    </div>
-    <p style="color: #cbd5e1; margin-top: 1rem;">Raleigh, NC | Masters in Engineering Management</p>
-</header>
+<script type="text/babel">
+const { useState } = React;
 
-<div class="container">
-    <section id="education">
-        <h2><i class="fas fa-graduation-cap"></i> Education</h2>
-        <div class="edu">
-            <span class="job-title">North Carolina State University</span>
-            <span class="date">Aug 2025 – May 2027</span>
-            <p>Masters - Engineering Management | CGPA: 3.8/4.0 [cite: 112, 113, 114]</p>
-        </div>
-        <div class="edu">
-            <span class="job-title">Vellore Institute of Technology</span>
-            <span class="date">Aug 2019 – Aug 2023</span>
-            <p>B.Tech - Computer Science Engineering with Business Systems [cite: 116, 117, 118]</p>
-        </div>
-    </section>
+function Portfolio() {
+    const [activeTab, setActiveTab] = useState('experience');
 
-    <section id="skills">
-        <h2><i class="fas fa-tools"></i> Skills</h2>
-        <div>
-            <strong>Technical:</strong>
-            <span class="tag">Python</span> <span class="tag">SQL</span> <span class="tag">JavaScript</span> <span class="tag">ReactJS</span> <span class="tag">ELK Stack</span> <span class="tag">Power BI</span> [cite: 128, 136]
-        </div>
-        <div style="margin-top: 10px;">
-            <strong>Management:</strong>
-            <span class="tag">Agile/Scrum</span> <span class="tag">Product Strategy</span> <span class="tag">KPI Tracking</span> <span class="tag">Market Analysis</span> [cite: 125, 126]
-        </div>
-    </section>
+    const skills = {
+        technical: ['Python', 'SQL', 'JavaScript', 'ReactJS', 'ELK Stack', 'Power BI', 'TensorFlow', 'BERT'],
+        management: ['Agile/Scrum', 'Product Strategy', 'KPI Tracking', 'Market Analysis']
+    };
 
-    <section id="experience">
-        <h2><i class="fas fa-briefcase"></i> Experience</h2>
-        <div class="job">
-            <span class="job-title">Software Engineering Associate @ Amdocs</span>
-            <span class="date">Aug 2023 – Jul 2025</span>
-            <ul>
-                <li>Led end-to-end product development using Agile/Scrum, improving delivery predictability by 20%[cite: 135].</li>
-                <li>Partnered with engineering teams to deliver ReactJS analytics dashboards, enhancing decision accuracy by 12%[cite: 136].</li>
-            </ul>
-        </div>
-        <div class="job">
-            <span class="job-title">Software Developer Intern @ ECBEE Innovations</span>
-            <span class="date">Nov 2022 – May 2023</span>
-            <ul>
-                <li>Managed delivery of real-time chat functionality, contributing to $480K in projected revenue[cite: 142, 143].</li>
-                <li>Reduced release cycles by 25% using Capacitor and Cordova for cross-platform apps[cite: 144].</li>
-            </ul>
-        </div>
-    </section>
+    const education = [
+        {
+            school: 'North Carolina State University',
+            degree: 'Masters in Engineering Management',
+            period: 'Aug 2025 – May 2027',
+            highlight: 'CGPA: 3.8/4.0'
+        },
+        {
+            school: 'Vellore Institute of Technology',
+            degree: 'B.Tech - Computer Science Engineering with Business Systems',
+            period: 'Aug 2019 – Aug 2023',
+            highlight: 'Specialized in Business Systems'
+        }
+    ];
 
-    <section id="projects">
-        <h2><i class="fas fa-code"></i> Key Projects</h2>
-        <div class="project-card">
-            <h3>EEG Analysis Pipeline</h3>
-            <p>Developed a machine learning-driven product pipeline to classify cognitive load from EEG biosignals using Python, TensorFlow, and Scikit-learn[cite: 95, 96].</p>
+    const experience = [
+        {
+            title: 'Software Engineering Associate',
+            company: 'Amdocs',
+            period: 'Aug 2023 – Jul 2025',
+            achievements: [
+                'Led end-to-end product development using Agile/Scrum, improving delivery predictability by 20%',
+                'Partnered with engineering teams to deliver ReactJS analytics dashboards, enhancing decision accuracy by 12%'
+            ]
+        },
+        {
+            title: 'Software Developer Intern',
+            company: 'ECBEE Innovations',
+            period: 'Nov 2022 – May 2023',
+            achievements: [
+                'Managed delivery of real-time chat functionality, contributing to $480K in projected revenue',
+                'Reduced release cycles by 25% using Capacitor and Cordova for cross-platform apps'
+            ]
+        }
+    ];
+
+    const projects = [
+        {
+            title: 'EEG Analysis Pipeline',
+            description: 'Developed a machine learning-driven product pipeline to classify cognitive load from EEG biosignals',
+            tech: ['Python', 'TensorFlow', 'Scikit-learn']
+        },
+        {
+            title: 'Medical Note De-identification',
+            description: 'Developed an NLP solution using transformer-based NER models (BERT) for automated PHI detection in clinical texts',
+            tech: ['BERT', 'NLP', 'Python']
+        }
+    ];
+
+    return (
+        <div className="bg-gray-50 min-h-screen">
+            {/* Hero Section */}
+            <header className="gradient-hero text-white py-20 px-4">
+                <div className="max-w-4xl mx-auto text-center">
+                    <div className="mb-6">
+                        <div className="w-24 h-24 rounded-full bg-white bg-opacity-20 mx-auto mb-4 flex items-center justify-center">
+                            <i className="fas fa-code text-4xl"></i>
+                        </div>
+                    </div>
+                    <h1 className="text-5xl font-bold mb-2">Nitin Jeremiah Vedanand</h1>
+                    <p className="text-xl text-gray-200 mb-6">Software Engineer | Product Manager | Data Scientist</p>
+                    <p className="text-gray-300 mb-8">Raleigh, NC | Masters in Engineering Management</p>
+                    
+                    <div className="flex justify-center gap-4 flex-wrap">
+                        <a href="mailto:nitinjvedanand@gmail.com" className="bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition flex items-center gap-2">
+                            <i className="fas fa-envelope"></i> Email
+                        </a>
+                        <a href="https://linkedin.com/in/nitinjv" target="_blank" className="bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition flex items-center gap-2">
+                            <i className="fab fa-linkedin"></i> LinkedIn
+                        </a>
+                        <a href="tel:984-382-9995" className="bg-white text-purple-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition flex items-center gap-2">
+                            <i className="fas fa-phone"></i> Call
+                        </a>
+                    </div>
+                </div>
+            </header>
+
+            {/* Main Content */}
+            <div className="max-w-4xl mx-auto px-4 py-16">
+                
+                {/* Skills Section */}
+                <section className="mb-20">
+                    <h2 className="text-4xl font-bold mb-12 section-title">
+                        <i className="fas fa-star text-purple-600 mr-3"></i>Skills
+                    </h2>
+                    
+                    <div className="grid md:grid-cols-2 gap-8">
+                        <div className="bg-white p-8 rounded-2xl shadow-lg card-hover">
+                            <h3 className="text-xl font-bold text-gray-800 mb-4">Technical</h3>
+                            <div className="flex flex-wrap gap-3">
+                                {skills.technical.map((skill, idx) => (
+                                    <span key={idx} className="skill-tag bg-gradient-to-r from-purple-100 to-indigo-100 text-purple-700 px-4 py-2 rounded-full font-medium text-sm">
+                                        {skill}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                        
+                        <div className="bg-white p-8 rounded-2xl shadow-lg card-hover">
+                            <h3 className="text-xl font-bold text-gray-800 mb-4">Management</h3>
+                            <div className="flex flex-wrap gap-3">
+                                {skills.management.map((skill, idx) => (
+                                    <span key={idx} className="skill-tag bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-700 px-4 py-2 rounded-full font-medium text-sm">
+                                        {skill}
+                                    </span>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Experience & Education Tabs */}
+                <section className="mb-20">
+                    <h2 className="text-4xl font-bold mb-12 section-title">
+                        <i className="fas fa-briefcase text-purple-600 mr-3"></i>Background
+                    </h2>
+
+                    {/* Tab Navigation */}
+                    <div className="flex gap-2 mb-8 bg-gray-100 p-1 rounded-lg w-fit">
+                        <button
+                            onClick={() => setActiveTab('experience')}
+                            className={`px-6 py-3 rounded-md font-semibold transition ${activeTab === 'experience' ? 'bg-white text-purple-600 shadow-md' : 'text-gray-600 hover:text-gray-800'}`}
+                        >
+                            <i className="fas fa-briefcase mr-2"></i>Experience
+                        </button>
+                        <button
+                            onClick={() => setActiveTab('education')}
+                            className={`px-6 py-3 rounded-md font-semibold transition ${activeTab === 'education' ? 'bg-white text-purple-600 shadow-md' : 'text-gray-600 hover:text-gray-800'}`}
+                        >
+                            <i className="fas fa-graduation-cap mr-2"></i>Education
+                        </button>
+                    </div>
+
+                    {/* Tab Content */}
+                    <div className="space-y-6">
+                        {activeTab === 'experience' && experience.map((job, idx) => (
+                            <div key={idx} className="bg-white p-8 rounded-2xl shadow-lg card-hover border-l-4 border-purple-600">
+                                <div className="flex justify-between items-start mb-4">
+                                    <div>
+                                        <h3 className="text-2xl font-bold text-gray-800">{job.title}</h3>
+                                        <p className="text-lg text-purple-600 font-semibold">{job.company}</p>
+                                    </div>
+                                    <span className="bg-purple-100 text-purple-700 px-4 py-2 rounded-lg text-sm font-semibold">{job.period}</span>
+                                </div>
+                                <ul className="space-y-3">
+                                    {job.achievements.map((achievement, i) => (
+                                        <li key={i} className="flex gap-3 text-gray-700">
+                                            <i className="fas fa-check text-green-500 mt-1"></i>
+                                            <span>{achievement}</span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
+
+                        {activeTab === 'education' && education.map((edu, idx) => (
+                            <div key={idx} className="bg-white p-8 rounded-2xl shadow-lg card-hover border-l-4 border-blue-600">
+                                <div className="flex justify-between items-start mb-4">
+                                    <div>
+                                        <h3 className="text-2xl font-bold text-gray-800">{edu.school}</h3>
+                                        <p className="text-lg text-blue-600 font-semibold">{edu.degree}</p>
+                                    </div>
+                                    <span className="bg-blue-100 text-blue-700 px-4 py-2 rounded-lg text-sm font-semibold">{edu.period}</span>
+                                </div>
+                                <p className="text-gray-600 flex items-center gap-2">
+                                    <i className="fas fa-medal text-yellow-500"></i>
+                                    {edu.highlight}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* Projects Section */}
+                <section className="mb-20">
+                    <h2 className="text-4xl font-bold mb-12 section-title">
+                        <i className="fas fa-code text-purple-600 mr-3"></i>Featured Projects
+                    </h2>
+
+                    <div className="grid md:grid-cols-2 gap-6">
+                        {projects.map((project, idx) => (
+                            <div key={idx} className="bg-white p-8 rounded-2xl shadow-lg card-hover hover:shadow-2xl">
+                                <div className="mb-4">
+                                    <i className="fas fa-project-diagram text-purple-600 text-3xl mb-4 block"></i>
+                                    <h3 className="text-xl font-bold text-gray-800">{project.title}</h3>
+                                </div>
+                                <p className="text-gray-600 mb-6">{project.description}</p>
+                                <div className="flex flex-wrap gap-2">
+                                    {project.tech.map((tech, i) => (
+                                        <span key={i} className="bg-purple-50 text-purple-700 px-3 py-1 rounded-full text-xs font-semibold">
+                                            {tech}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+                {/* CTA Section */}
+                <section className="bg-gradient-to-r from-purple-600 to-pink-600 text-white p-12 rounded-2xl text-center mb-20">
+                    <h2 className="text-3xl font-bold mb-4">Let's Work Together</h2>
+                    <p className="text-lg mb-6 text-gray-100">Interested in discussing your next project or opportunity?</p>
+                    <a href="mailto:nitinjvedanand@gmail.com" className="inline-block bg-white text-purple-600 px-8 py-4 rounded-lg font-bold hover:bg-gray-100 transition">
+                        Get In Touch
+                    </a>
+                </section>
+            </div>
+
+            {/* Footer */}
+            <footer className="bg-gray-900 text-gray-400 py-8 text-center">
+                <p>© 2024 Nitin Jeremiah Vedanand. All rights reserved.</p>
+            </footer>
         </div>
-        <div class="project-card">
-            <h3>Medical Note De-identification</h3>
-            <p>Developed an NLP solution using transformer-based NER models (BERT) for automated PHI detection in clinical texts[cite: 98, 99].</p>
-        </div>
-    </section>
+    );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<Portfolio />);
+</script>
+</body>
+</html>
 </div>
 
 <footer>
